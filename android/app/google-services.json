@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "499046447668",
+    "firebase_url": "https://sand-box-19958-default-rtdb.firebaseio.com",
+    "project_id": "sand-box-19958",
+    "storage_bucket": "sand-box-19958.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499046447668:android:690b2ee0b349af4a2c2861",
+        "android_client_info": {
+          "package_name": "com.example.firebase_learn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "499046447668-tvcpgi6alkr6u11bcfhd81len09bjelj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC47tt4sDf-XGnbbg8OKtT1Mch1WplsvYc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "499046447668-tvcpgi6alkr6u11bcfhd81len09bjelj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499046447668:android:f26b2132c6347d482c2861",
+        "android_client_info": {
+          "package_name": "com.example.flutter_tester"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "499046447668-tvcpgi6alkr6u11bcfhd81len09bjelj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC47tt4sDf-XGnbbg8OKtT1Mch1WplsvYc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "499046447668-tvcpgi6alkr6u11bcfhd81len09bjelj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499046447668:android:2a474039e48c58692c2861",
+        "android_client_info": {
+          "package_name": "com.example.talent_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "499046447668-tvcpgi6alkr6u11bcfhd81len09bjelj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC47tt4sDf-XGnbbg8OKtT1Mch1WplsvYc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "499046447668-tvcpgi6alkr6u11bcfhd81len09bjelj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
