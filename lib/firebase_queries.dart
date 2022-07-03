@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_learn/chat_data.dart';
+import 'package:firebase_learn/user_data.dart';
 
 class Firebase_queries {
   Future<QuerySnapshot<Map<String, dynamic>>> getCollection(
@@ -7,10 +9,9 @@ class Firebase_queries {
     return Q.get();
   }
 
-//TODO change user_id to a UserData object and then get the id from the object
-  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
-      get_all_user_chats_collection(
-          FirebaseFirestore firestore, String user_id) async {
+//In work
+  Future<QuerySnapshot<Map<String, dynamic>>> get_all_user_chats_collection(
+      FirebaseFirestore firestore, String user_id) async {
     var Q1 = await firestore
         .collection("Chats")
         .where("User1", isEqualTo: user_id)
@@ -22,19 +23,38 @@ class Firebase_queries {
     var a = Q1.size;
     a += Q2.size;
 
-    var ChatsList = Q2.docs;
-    ChatsList.addAll(Q1.docs);
-    ChatsList = ChatsList.toSet().toList();
+    var ChatsList = Q2;
+    ChatsList.docs.addAll(Q2.docs);
+
+    //TODO: how to remove duplicates?????????
 
     return ChatsList;
   }
 
+//works
   Future<void> del_chat(FirebaseFirestore firestore, String chatId) async {
     firestore.collection("Chats").doc(chatId).delete();
   }
 
-  Future<void> create_chat(FirebaseFirestore firestore, String chatId) async {
-    //firestore.collection("Chats").add(data); // TODO
+//works
+  Future<void> create_chat(
+      FirebaseFirestore firestore, ChatData chat_data) async {
+    firestore.collection("Chats").add({
+      "user1": chat_data.user1_Id,
+      "user2": chat_data.user2_id,
+    });
+  }
+
+//works
+  Future<void> create_user(
+      FirebaseFirestore firestore, UserData userData) async {
+    firestore.collection("users").add({
+      "age": userData.age,
+      "name": userData.name,
+      "email": userData.email,
+      "phone_number": userData.phoneNumber,
+      "user_type": userData.userType.toString()
+    });
   }
 
   Future<QuerySnapshot<Map<String, dynamic>>> getAllChats(
