@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_learn/chat_data.dart';
 import 'package:firebase_learn/firebase_queries.dart';
+import 'package:firebase_learn/message_data.dart';
 import 'package:firebase_learn/user_data.dart';
 import 'package:firebase_learn/widgets.dart';
 import 'package:flutter/material.dart';
@@ -32,14 +33,17 @@ class _AppState extends State<App> {
               // user.userType = UserType.talent;
               // await fbq.create_user(firestore, user);
 
-              fbq.del_chat(firestore,"4uM20WwPqCJtCwjgkNeQ");
-              print("added chat");
+              var msg = new MessageData(
+                  "user1", "user2", DateTime.now(), false, "text text text");
+              fbq.sendMessage(firestore,"tcWp4IwncJAFw14wFnAo",msg);
+              //fbq.del_chat(firestore, "4uM20WwPqCJtCwjgkNeQ");
+              print("sent");
             },
           )),
           Expanded(
             child: Center(
                 child: FutureBuilder<QuerySnapshot>(
-              future:  fbq.get_all_user_chats_collection(firestore," "),
+              future: fbq.get_all_user_chats_collection(firestore, " "),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasError) {
@@ -61,7 +65,6 @@ class _AppState extends State<App> {
                     );
                   }
                 }
-
                 if (snapshot.connectionState == ConnectionState.done) {}
                 return Text("loading");
               },

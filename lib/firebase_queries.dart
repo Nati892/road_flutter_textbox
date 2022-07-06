@@ -60,63 +60,61 @@ class Firebase_queries {
     });
   }
 
-//will not workwhen securityrules will apply
+//will not work when security rules will apply
   Future<QuerySnapshot<Map<String, dynamic>>> getAllChats(
       FirebaseFirestore firestore, String chatsCollection) async {
     var Q = firestore.collection(chatsCollection);
     return Q.get();
   }
-}
+
+//works
+  Future<void> sendMessage(
+      FirebaseFirestore firestore, String ChatName, MessageData msg) async {
+    msg.TimeSent = DateTime.now();
+    await firestore
+        .collection("Chats")
+        .doc(ChatName)
+        .collection("ChatMessages")
+        .add({
+      "SenderId": msg.SenderId,
+      "ReceiverId": msg.ReceiverId,
+      "TimeSent": Timestamp.fromDate(msg.TimeSent),
+      "TimeReceived": null,
+      "TimeRead": null,
+      "Forworded": msg.Forworded,
+      "MessageText": msg.MessageText
+    });
+  }
 
 //to test
-Future<void> sendMessage(
-    FirebaseFirestore firestore, String ChatName, MessageData msg) async {
-  msg.TimeSent = DateTime.now();
-  await firestore
-      .collection("Chats")
-      .doc(ChatName)
-      .collection("ChatMessages")
-      .add({
-    "SenderId": msg.SenderId,
-    "ReceiverId": msg.ReceiverId,
-    "TimeSent": Timestamp.fromDate(msg.TimeSent),
-    "TimeReceived": null,
-    "TimeRead": null,
-    "Forworded": msg.Forworded,
-    "MessageText": msg.MessageText
-  });
-}
+  Future<QuerySnapshot<Map<String, dynamic>>> GetUpdatedMessages(
+      FirebaseFirestore firestore,
+      String ChatName,
+      DateTime lastMessageTime) async {
+    var chat = await firestore
+        .collection("Chats")
+        .doc(ChatName)
+        .collection("ChatMessages")
+        .where("TimeSent",
+            isGreaterThanOrEqualTo: Timestamp.fromDate(lastMessageTime))
+        .get();
+    return chat;
+  }
 
-//in testing
-Future<QuerySnapshot<Map<String, dynamic>>> GetUpdatedMessages(
+//to test
+  Future<QuerySnapshot<Map<String, dynamic>>> GetAllMessagesInChat(
     FirebaseFirestore firestore,
     String ChatName,
-    DateTime lastMessageTime) async {
-  var chat = await firestore
-      .collection("Chats")
-      .doc(ChatName)
-      .collection("ChatMessages")
-      .where("TimeSent",
-          isGreaterThanOrEqualTo: Timestamp.fromDate(lastMessageTime))
-      .get();
-  return chat;
+  ) async {
+    var chat = await firestore
+        .collection("Chats")
+        .doc(ChatName)
+        .collection("ChatMessages")
+        .get();
+
+    return chat;
+  }
 }
-
-Future<QuerySnapshot<Map<String, dynamic>>> GetAllMessagesInChat(
-  FirebaseFirestore firestore,
-  String ChatName,
-) async {
-  var chat = await firestore
-      .collection("Chats")
-      .doc(ChatName)
-      .collection("ChatMessages")
-      .get();
-
-  return chat;
-}
-
-
-
 //queries I need, I receive a reference to a post or document and try to get/set/del the data and also filter
 //so...
 //user_chats:
@@ -125,5 +123,5 @@ Future<QuerySnapshot<Map<String, dynamic>>> GetAllMessagesInChat(
 
 //messages: chat reference -> R, RealTime chat chat -> RTR
 //R->get all messeges starting from dateTime x,get all messeges
-//RTR-> listen to changes, del message, send message. 
+//RTR-> listen to changes, del message, send message.
 //Uers: block user (each user as a blackList)

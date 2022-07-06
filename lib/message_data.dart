@@ -1,9 +1,11 @@
 class MessageData {
   String SenderId = "";
   String ReceiverId = "";
-  DateTime TimeSent=DateTime.now();
+  DateTime TimeSent = DateTime.now();
   DateTime? TimeRecieved;
   DateTime? TimeRead;
   bool? Forworded;
-  String MessageText="";
+  String MessageText = "";
+
+  MessageData(this.SenderId,this.ReceiverId,this.TimeSent,this.Forworded,this.MessageText);
 }
