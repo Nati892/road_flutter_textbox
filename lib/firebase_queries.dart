@@ -119,8 +119,8 @@ class Firebase_queries {
 //queries I need, I receive a reference to a post or document and try to get/set/del the data and also filter
 //so...
 //user_chats:
-//add private chat for each user
-//get all chats by user in them, del chat, create chat
+//add private chat for each user                        **done**
+//get all chats by user in them, del chat, create chat   **done**
 
 //messages: chat reference -> R, RealTime chat chat -> RTR
 //R->get all messeges starting from dateTime x,get all messeges
