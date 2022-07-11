@@ -20,7 +20,7 @@ class _AppState extends State<App> {
       body: TextButton(
         child: Center(child: Text("go to chats")),
         onPressed: () {
-          Navigator.pushNamed(context, '/showchats');
+          Navigator.pushNamed(context, '/showallchats');
         },
       ),
     );

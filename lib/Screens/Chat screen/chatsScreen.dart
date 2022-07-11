@@ -11,7 +11,7 @@ class ChatsScreen extends StatefulWidget {
 }
 
 class _ChatsScreenState extends State<ChatsScreen> {
-  final String route = "/showchats";
+  final String route = "/showallchats";
   List<ChatData> UserChats = [
     ChatData("user1_Id", "user2_Id"),
     ChatData("another user1", "another user2")

@@ -13,6 +13,7 @@ class ListChatItem extends StatelessWidget {
             //when preesed only debugs
             print(
                 "Pressed!! ${Cdata.ChatId} + ${Cdata.user1_Id} + ${Cdata.user2_id}");
+                  Navigator.pushNamed(context, '/userchat');
           },
           child: Container(
             decoration: BoxDecoration(
