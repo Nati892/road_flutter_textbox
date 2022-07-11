@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'Screens/Chat screen/chatsScreen.dart';
 import 'app.dart';
 
 void main() async {
@@ -17,7 +18,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'road sandBox',
+      initialRoute: '/',
+      routes: {
+    // When navigating to the "/" route, build the FirstScreen widget.
+    '/': (context) => const App(),
+    // When navigating to the "/second" route, build the SecondScreen widget.
+    "/showchats": (context) => const ChatsScreen(),
+  },
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -30,7 +38,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const App(),
+      
     );
   }
 }

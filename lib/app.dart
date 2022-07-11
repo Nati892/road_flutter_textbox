@@ -17,59 +17,79 @@ class _AppState extends State<App> {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     var fbq = Firebase_queries();
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-              child: TextButton(
-            child: Text("test add user"),
-            onPressed: () async {
-              // var user = UserData();
-              // user.name = "added by query";
-              // user.age = 100;
-              // user.email = "nobody@gmail.com";
-              // user.phoneNumber = "0500500500";
-              // user.userType = UserType.talent;
-              // await fbq.create_user(firestore, user);
-
-              var msg = new MessageData(
-                  "user1", "user2", DateTime.now(), false, "text text text");
-              fbq.sendMessage(firestore,"tcWp4IwncJAFw14wFnAo",msg);
-              //fbq.del_chat(firestore, "4uM20WwPqCJtCwjgkNeQ");
-              print("sent");
-            },
-          )),
-          Expanded(
-            child: Center(
-                child: FutureBuilder<QuerySnapshot>(
-              future: fbq.get_all_user_chats_collection(firestore, " "),
-              builder: (BuildContext context,
-                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.hasError) {
-                  return Text("Something went wrong");
-                }
-
-                if (snapshot.hasData && snapshot.hasData) {
-                  if (snapshot.data!.docs.length <= 0)
-                    return Text("Document does not exist");
-                  else {
-                    List<String> got_users = [];
-
-                    snapshot.data!.docs.forEach((element) {
-                      got_users.add(element["name"]);
-                    });
-
-                    return ListTextItem(
-                      texts: got_users,
-                    );
-                  }
-                }
-                if (snapshot.connectionState == ConnectionState.done) {}
-                return Text("loading");
-              },
-            )),
-          ),
-        ],
+      body: TextButton(
+        child: Center(child: Text("go to chats")),
+        onPressed: () {
+          Navigator.pushNamed(context, '/showchats');
+        },
       ),
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // body: Column(
+      //   children: [
+      //     Expanded(
+      //         child: TextButton(
+      //       child: Text("test add user"),
+      //       onPressed: () async {
+      //         // var user = UserData();
+      //         // user.name = "added by query";
+      //         // user.age = 100;
+      //         // user.email = "nobody@gmail.com";
+      //         // user.phoneNumber = "0500500500";
+      //         // user.userType = UserType.talent;
+      //         // await fbq.create_user(firestore, user);
+
+      //         var msg = new MessageData(
+      //             "user1", "user2", DateTime.now(), false, "text text text");
+      //         fbq.sendMessage(firestore,"tcWp4IwncJAFw14wFnAo",msg);
+      //         //fbq.del_chat(firestore, "4uM20WwPqCJtCwjgkNeQ");
+      //         print("sent");
+      //       },
+      //     )),
+      //     Expanded(
+      //       child: Center(
+      //           child: FutureBuilder<QuerySnapshot>(
+      //         future: fbq.get_all_user_chats_collection(firestore, " "),
+      //         builder: (BuildContext context,
+      //             AsyncSnapshot<QuerySnapshot> snapshot) {
+      //           if (snapshot.hasError) {
+      //             return Text("Something went wrong");
+      //           }
+
+      //           if (snapshot.hasData && snapshot.hasData) {
+      //             if (snapshot.data!.docs.length <= 0)
+      //               return Text("Document does not exist");
+      //             else {
+      //               List<String> got_users = [];
+
+      //               snapshot.data!.docs.forEach((element) {
+      //                 got_users.add(element["name"]);
+      //               });
+
+      //               return ListTextItem(
+      //                 texts: got_users,
+      //               );
+      //             }
+      //           }
+      //           if (snapshot.connectionState == ConnectionState.done) {}
+      //           return Text("loading");
+      //         },
+      //       )),
+      //     ),
+      //   ],
