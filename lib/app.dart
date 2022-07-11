@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_learn/chat_data.dart';
 import 'package:firebase_learn/firebase_queries.dart';
-import 'package:firebase_learn/message_data.dart';
-import 'package:firebase_learn/user_data.dart';
+import 'package:firebase_learn/Message/message_data.dart';
 import 'package:firebase_learn/widgets.dart';
 import 'package:flutter/material.dart';
 
