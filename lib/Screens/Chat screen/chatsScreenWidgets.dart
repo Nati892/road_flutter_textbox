@@ -13,7 +13,7 @@ class ListChatItem extends StatelessWidget {
             //when preesed only debugs
             print(
                 "Pressed!! ${Cdata.ChatId} + ${Cdata.user1_Id} + ${Cdata.user2_id}");
-                  Navigator.pushNamed(context, '/userchat');
+            Navigator.pushNamed(context, '/userchat');
           },
           child: Container(
             decoration: BoxDecoration(
@@ -22,8 +22,18 @@ class ListChatItem extends StatelessWidget {
                 border: Border.all(color: Colors.blueGrey),
                 borderRadius: const BorderRadius.all(Radius.circular(5))),
             child: Center(
-                child: Text(
-                    "${Cdata.ChatId} + ${Cdata.user1_Id} +${Cdata.user2_id}")),
+                child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                  ),
+                  child: Icon(Icons.person),
+                ),
+                Text("${Cdata.ChatId} + ${Cdata.user1_Id} +${Cdata.user2_id}"),
+              ],
+            )),
           ),
         ));
   }
