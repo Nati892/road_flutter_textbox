@@ -26,12 +26,63 @@ class Firebase_queries {
     var a = Q1.size;
     a += Q2.size;
 
-    var ChatsList = Q2;
-    ChatsList.docs.addAll(Q2.docs);
+    var Chats = Q2;
+    Chats.docs.addAll(Q2.docs);
 
-    //TODO: how to remove duplicates?????????
+    return Chats;
+  }
+
+
+  List<ChatData> ConvertChatQToList(QuerySnapshot<Map<String, dynamic>> Q) {
+    List<ChatData> ChatsList = Q.docs
+        .map((e) {
+          //filte function that returns a list of the data
+          var temp = ChatData(e["user1_Id"], e["user2_Id"]);
+          temp.ChatId = e.id;
+          return temp;
+        })
+        .toList()
+        .map((e) => e)
+        .toList();
 
     return ChatsList;
+  }
+
+
+//TODO finish!
+  // List<ChatData> ConvertChatSToList(Stream<QuerySnapshot<Map<String, dynamic>>> Q) {
+  //   List<ChatData> ChatsList = Q.docs
+  //       .map((e) {
+  //         //filte function that returns a list of the data
+  //         var temp = ChatData(e["user1_Id"], e["user2_Id"]);
+  //         temp.ChatId = e.id;
+  //         return temp;
+  //       })
+  //       .toList()
+  //       .map((e) => e)
+  //       .toList();
+
+  //   return ChatsList;
+  // }
+
+// **** how to have it as a listenable state??????
+  void getAllChatsSnapshot(FirebaseFirestore firestore, String userId) {
+    var collectionStream1 = FirebaseFirestore.instance
+        .collection('Chats')
+        .where("user1_Id", isEqualTo: userId)
+        .snapshots();
+
+    var collectionStream2 = FirebaseFirestore.instance
+        .collection('Chats')
+        .where("user2_Id", isEqualTo: userId)
+        .snapshots();
+
+    List<ChatData> a = [];
+
+
+//TODO make a streamf of combined data that changes by listening to these streams
+    // collectionStream1.listen((event) {a.addAll(ConvertChatSToList()))});
+    // collectionStream2.listen((event) {});
   }
 
 //works
