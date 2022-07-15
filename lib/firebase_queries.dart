@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_learn/Message/message_data.dart';
+import 'package:firebase_learn/Message/message_model.dart';
 
-import 'Chat/chat_data.dart';
-import 'User/user_data.dart';
+import 'Chat/chat_model.dart';
+import 'User/user_model.dart';
 
 class Firebase_queries {
   Future<QuerySnapshot<Map<String, dynamic>>> getCollection(

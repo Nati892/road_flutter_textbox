@@ -1,4 +1,4 @@
-import 'package:firebase_learn/Chat/chat_data.dart';
+import 'package:firebase_learn/Chat/chat_model.dart';
 import 'package:flutter/material.dart';
 
 class ListChatItem extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Chat/chat_data.dart';
+import '../Chat/chat_model.dart';
 
 class ChatsVM extends ChangeNotifier {
   List<ChatData> localChats = []; //will be reference to local db
