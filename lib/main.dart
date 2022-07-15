@@ -1,5 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_learn/Chat/chat_model.dart';
+import 'package:firebase_learn/Message/message_model.dart';
 import 'package:firebase_learn/Screens/User%20chat%20screen/user_chat_screen.dart';
+import 'package:firebase_learn/User/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 
@@ -8,9 +11,14 @@ import 'app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();//firebase init
-  await Hive.initFlutter();//Hive init
-
+  await Firebase.initializeApp(); //firebase init
+  await Hive.initFlutter(); //Hive init
+  Hive.registerAdapter(MessageDataAdapter());
+  Hive.registerAdapter(ChatDataAdapter());
+  Hive.registerAdapter(UserDataAdapter());
+  await Hive.openBox<MessageData>('MessageData');
+  await Hive.openBox<ChatData>('ChatData');
+  await Hive.openBox<UserData>('UserData');
   runApp(const MyApp());
 }
 
