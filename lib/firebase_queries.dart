@@ -13,25 +13,34 @@ class Firebase_queries {
 
 //In work
 //gets all chats with user in them
-  Future<QuerySnapshot<Map<String, dynamic>>> get_all_user_chats_collection(
-      FirebaseFirestore firestore, String user_id) async {
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
+      get_all_user_chats_collection(
+          FirebaseFirestore firestore, String user_id) async {
+    List<QueryDocumentSnapshot<Map<String, dynamic>>> Chats = [];
     var Q1 = await firestore
         .collection("Chats")
-        .where("User1", isEqualTo: user_id)
+        .where("user1", isEqualTo: user_id)
         .get();
     var Q2 = await firestore
         .collection("Chats")
-        .where("User2", isEqualTo: user_id)
+        .where("user2", isEqualTo: user_id)
         .get();
     var a = Q1.size;
     a += Q2.size;
-
-    var Chats = Q2;
-    Chats.docs.addAll(Q2.docs);
-
+    print("Q2.size: " + Q2.size.toString());
+    print("Q1.size: " + Q1.size.toString());
+    for (var element in Q1.docs) {
+      Chats.add(element);
+    }
+    for (var element in Q2.docs) {
+      Chats.add(element);
+    }
+    
+    print("Chats.size: " + Chats.length.toString());
+    print("Q2.size: " + Q2.size.toString());
+    print("Q1.size: " + Q1.size.toString());
     return Chats;
   }
-
 
   List<ChatData> ConvertChatQToList(QuerySnapshot<Map<String, dynamic>> Q) {
     List<ChatData> ChatsList = Q.docs
@@ -48,41 +57,42 @@ class Firebase_queries {
     return ChatsList;
   }
 
+// //TODO finish!
+//   List<ChatData> ConvertChatSToList(Stream<QuerySnapshot<Map<String, dynamic>>> Q) {
+//        List<ChatData> ChatsList = Q.
+//     // List<ChatData> ChatsList = Q.docs
+//         // .map((e) {
+//         //   //filte function that returns a list of the data
+//         //   var temp = ChatData(e["user1_Id"], e["user2_Id"]);
+//         //   temp.ChatId = e.id;
+//         //   return temp;
+//         // })
+//         // .toList()
+//         // .map((e) => e)
+//         // .toList();
 
-//TODO finish!
-  // List<ChatData> ConvertChatSToList(Stream<QuerySnapshot<Map<String, dynamic>>> Q) {
-  //   List<ChatData> ChatsList = Q.docs
-  //       .map((e) {
-  //         //filte function that returns a list of the data
-  //         var temp = ChatData(e["user1_Id"], e["user2_Id"]);
-  //         temp.ChatId = e.id;
-  //         return temp;
-  //       })
-  //       .toList()
-  //       .map((e) => e)
-  //       .toList();
-
-  //   return ChatsList;
-  // }
+//     return ChatsList;
+//   }
 
 // **** how to have it as a listenable state??????
   void getAllChatsSnapshot(FirebaseFirestore firestore, String userId) {
     var collectionStream1 = FirebaseFirestore.instance
         .collection('Chats')
-        .where("user1_Id", isEqualTo: userId)
+        .where("user1", isEqualTo: userId)
         .snapshots();
 
     var collectionStream2 = FirebaseFirestore.instance
         .collection('Chats')
-        .where("user2_Id", isEqualTo: userId)
+        .where("user2", isEqualTo: userId)
         .snapshots();
 
     List<ChatData> a = [];
 
-
-//TODO make a streamf of combined data that changes by listening to these streams
+//TODO make a stream of combined data that changes by listening to these streams
     // collectionStream1.listen((event) {a.addAll(ConvertChatSToList()))});
     // collectionStream2.listen((event) {});
+
+    var s3 = Stream.empty();
   }
 
 //works

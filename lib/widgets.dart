@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//List text item
 class ListTextItem extends StatelessWidget {
   const ListTextItem({Key? key, required this.texts}) : super(key: key);
   final List<String> texts;

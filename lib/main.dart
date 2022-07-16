@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_learn/Chat/chat_model.dart';
 import 'package:firebase_learn/Message/message_model.dart';
+import 'package:firebase_learn/Screens/Test%20page/stream_listen_screen.dart';
 import 'package:firebase_learn/Screens/User%20chat%20screen/user_chat_screen.dart';
 import 'package:firebase_learn/User/user_model.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/second" route, build the SecondScreen widget.
         "/showallchats": (context) => const ChatsScreen(), //shows all chats
         "/userchat": (context) => const ChatScreen(), //single user chat
+        "/testfbstream": (context) => const TestFbStream(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

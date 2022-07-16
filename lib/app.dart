@@ -17,11 +17,27 @@ class _AppState extends State<App> {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     var fbq = Firebase_queries();
     return Scaffold(
-      body: TextButton(
-        child: Center(child: Text("go to chats")),
-        onPressed: () {
-          Navigator.pushNamed(context, '/showallchats');
-        },
+      body: Container(
+        color: Colors.grey[100],
+        child: LimitedBox(maxHeight: 400,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                child: Center(child: Text("go to chats")),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/showallchats');
+                },
+              ),
+              TextButton(
+                child: Center(child: Text("go to test")),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/testfbstream');
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
