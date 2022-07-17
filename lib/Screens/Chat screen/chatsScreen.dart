@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_learn/Chat/chat_model.dart';
 import 'package:flutter/material.dart';
 
+import '../../firebase_queries.dart';
 import 'chatsScreenWidgets.dart';
 
 class ChatsScreen extends StatefulWidget {
@@ -12,22 +14,45 @@ class ChatsScreen extends StatefulWidget {
 
 class _ChatsScreenState extends State<ChatsScreen> {
   final String route = "/showallchats";
-  List<ChatData> UserChats = [
-    ChatData("user1_Id", "user2_Id"),
-    ChatData("another user1", "another user2")
-  ]; //mock for the real dynamic deal, TODO: implement provider pattern
+
+  final String DEBUG_USER_ID = "459rizMNZboZgo95EcIy";
+  List<QueryDocumentSnapshot> set = [];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-          child: ListView.builder(
-              itemCount: UserChats.length,
-              itemBuilder: (BuildContext context, int i) {
-                return Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: ListChatItem(Cdata: UserChats[i]),
-                );
-              })),
+    print("hiiiiii");
+    return FutureBuilder(
+      future: Firebase_queries().get_all_user_chats_collection(
+          FirebaseFirestore.instance, DEBUG_USER_ID),
+      initialData: set,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          set.addAll(snapshot.data);
+
+          print("good: " + set.length.toString());
+          return Scaffold(
+            appBar: AppBar(title: Text("Chats")),
+            body: Center(
+              child: ListView.builder(
+                itemCount: set.length,
+                itemBuilder: (context, index) {
+                  print("debug1: " + index.toString());
+                  var i = set[index];
+                  print("set size: " + set.length.toString());
+                  var otherUser = i["user2"];
+                  if (i["user2"] == DEBUG_USER_ID) otherUser = i["user1"];
+
+                  return ListChatItem(
+                    Cdata: ChatData(otherUser, DEBUG_USER_ID),
+                  );
+                },
+              ),
+            ),
+          );
+        } else {
+          return Scaffold(body: Center(child: Text("Loading")));
+        }
+      },
     );
   }
 }
