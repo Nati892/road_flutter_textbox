@@ -35,7 +35,7 @@ class Firebase_queries {
     for (var element in Q2.docs) {
       Chats.add(element);
     }
-    
+
     print("Chats.size: " + Chats.length.toString());
     print("Q2.size: " + Q2.size.toString());
     print("Q1.size: " + Q1.size.toString());
@@ -127,6 +127,12 @@ class Firebase_queries {
       FirebaseFirestore firestore, String chatsCollection) async {
     var Q = firestore.collection(chatsCollection);
     return Q.get();
+  }
+
+  Future<DocumentSnapshot<Map<String, dynamic>>> getUserById(
+      FirebaseFirestore firestore, String userId) async {
+    return await firestore
+        .collection("users").doc(userId).get();
   }
 
 //works

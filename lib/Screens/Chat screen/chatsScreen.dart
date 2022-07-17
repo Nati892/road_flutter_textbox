@@ -40,11 +40,15 @@ class _ChatsScreenState extends State<ChatsScreen> {
                   var i = set[index];
                   print("set size: " + set.length.toString());
                   var otherUser = i["user2"];
-                  if (i["user2"] == DEBUG_USER_ID) otherUser = i["user1"];
-
-                  return ListChatItem(
-                    Cdata: ChatData(otherUser, DEBUG_USER_ID),
-                  );
+                  if (i["user2"] == DEBUG_USER_ID) {
+                    otherUser = i["user1"];
+                    return ListChatItem(
+                      Cdata: ChatData(otherUser, DEBUG_USER_ID),
+                    );
+                  } else {
+                    return ListChatItem(
+                        Cdata: ChatData(DEBUG_USER_ID, otherUser));
+                  }
                 },
               ),
             ),
