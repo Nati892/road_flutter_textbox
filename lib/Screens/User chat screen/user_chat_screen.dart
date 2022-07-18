@@ -4,7 +4,6 @@ import 'package:firebase_learn/firebase_queries.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatefulWidget {
-  //TODO: add param for chat.
   const ChatScreen({Key? key}) : super(key: key);
 
   @override

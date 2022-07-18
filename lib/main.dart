@@ -3,6 +3,7 @@ import 'package:firebase_learn/Chat/chat_model.dart';
 import 'package:firebase_learn/Message/message_model.dart';
 import 'package:firebase_learn/Screens/Test%20page/stream_listen_screen.dart';
 import 'package:firebase_learn/Screens/User%20chat%20screen/user_chat_screen.dart';
+import 'package:firebase_learn/Screens/contacts%20screen/contatcts_screen.dart';
 import 'package:firebase_learn/User/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         "/showallchats": (context) => const ChatsScreen(), //shows all chats
         "/userchat": (context) => const ChatScreen(), //single user chat
         "/testfbstream": (context) => const TestFbStream(),
+        "/contacts": (context) => const ContactsScreen(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
