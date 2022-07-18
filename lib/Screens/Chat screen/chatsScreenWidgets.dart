@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_learn/Chat/chat_model.dart';
+import 'package:firebase_learn/Screens/User%20chat%20screen/user_chat_screen_args.dart';
 import 'package:firebase_learn/firebase_queries.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,8 @@ class ListChatItem extends StatelessWidget {
                 onTap: () {
                   //when preesed only debugs
                   print("Pressed!! ${snapshot.data["name"]}");
-                  Navigator.pushNamed(context, '/userchat');
+                  Navigator.pushNamed(context, '/userchat',
+                      arguments: UserChatScreenArgs(Cdata.ChatId));
                 },
                 child: Container(
                   decoration: BoxDecoration(
