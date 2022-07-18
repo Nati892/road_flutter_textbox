@@ -17,7 +17,7 @@ class ListChatItem extends StatelessWidget {
           .getUserById(FirebaseFirestore.instance, otherUserId),
       initialData: null,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.done)
+        if (snapshot.connectionState == ConnectionState.done) {
           return ConstrainedBox(
               constraints: BoxConstraints(minHeight: 100, maxHeight: 100),
               child: GestureDetector(
@@ -36,7 +36,7 @@ class ListChatItem extends StatelessWidget {
                       child: Row(
                     children: [
                       Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.white,
                         ),
@@ -47,7 +47,7 @@ class ListChatItem extends StatelessWidget {
                   )),
                 ),
               ));
-        else {
+        } else {
           return Text("loading");
         }
       },

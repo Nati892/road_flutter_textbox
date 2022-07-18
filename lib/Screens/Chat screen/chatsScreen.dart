@@ -42,12 +42,19 @@ class _ChatsScreenState extends State<ChatsScreen> {
                   var otherUser = i["user2"];
                   if (i["user2"] == DEBUG_USER_ID) {
                     otherUser = i["user1"];
+                    var cd = ChatData(otherUser, DEBUG_USER_ID);
+                    cd.ChatId = set[index].id;
+                    print("debuggg:  ");
+                    print(set[index]);
                     return ListChatItem(
-                      Cdata: ChatData(otherUser, DEBUG_USER_ID),
+                      Cdata: cd,
                     );
                   } else {
-                    return ListChatItem(
-                        Cdata: ChatData(DEBUG_USER_ID, otherUser));
+                    var cd = ChatData(DEBUG_USER_ID, otherUser);
+                    print("debuggg:  ");
+                    print(set[index].id);
+                    cd.ChatId = set[index].id;
+                    return ListChatItem(Cdata: cd);
                   }
                 },
               ),
