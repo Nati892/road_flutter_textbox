@@ -7,7 +7,7 @@ import 'package:firebase_learn/User/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 
-import 'Screens/Chat screen/chatsScreen.dart';
+import 'Screens/Chats screen/chatsScreen.dart';
 import 'app.dart';
 
 void main() async {

@@ -178,6 +178,7 @@ class Firebase_queries {
         .collection("Chats")
         .doc(ChatName)
         .collection("ChatMessages")
+        .orderBy("TimeSent")
         .get();
 
     return chat;
