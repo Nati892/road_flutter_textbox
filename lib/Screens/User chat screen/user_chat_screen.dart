@@ -31,22 +31,29 @@ class _ChatScreenState extends State<ChatScreen> {
                 body: Center(
                   child: Column(
                     children: [
-                      ConstrainedBox(
-                        constraints: BoxConstraints(maxHeight: 300),
-                        child: ListView(
-                          children: [Text("data"), Text("2")],
-                        ),
+                      
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10,20,0,0),
+                        child: ConstrainedBox(
+                            constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height*0.85),
+                            child: ListView.builder(
+                                itemCount: snapshot.data.size,
+                                itemBuilder: (BuildContext context, int index) {
+                                  print(
+                                      "!!!!!!!!******no way*********!!!!!!!!!!!");
+                                  return Text(
+                                      "${snapshot.data.docs[index]["MessageText"]}");
+                                })),
                       ),
-                      ConstrainedBox(
-                          constraints: BoxConstraints(maxHeight: 300),
-                          child: ListView.builder(
-                              itemCount: snapshot.data.size,
-                              itemBuilder: (BuildContext context, int index) {
-                                print(
-                                    "!!!!!!!!******no way*********!!!!!!!!!!!");
-                                return Text(
-                                    "${snapshot.data.docs[index]["MessageText"]}");
-                              })),
+                      Expanded(
+                          child: Container(
+                        child: Row(
+                          children: [
+                            Expanded(child: ConstrainedBox(child: TextField(decoration: InputDecoration(border: OutlineInputBorder(),hintText: "Message"),),constraints: BoxConstraints(maxWidth:400,maxHeight: 100 ),)),
+                            
+                            ],
+                        ),
+                      ))
                     ],
                   ),
                 ),
@@ -63,7 +70,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   body: Center(child: Text("Loading data")));
 
               break;
-              default:
+            default:
               return Scaffold(
                   appBar: AppBar(title: Text("${args.chatId}")),
                   body: Center(child: Text("Dont know...")));
