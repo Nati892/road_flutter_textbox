@@ -131,15 +131,14 @@ class Firebase_queries {
 
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserById(
       FirebaseFirestore firestore, String userId) async {
-    return await firestore
-        .collection("users").doc(userId).get();
+    return await firestore.collection("users").doc(userId).get();
   }
 
 //works
-  Future<void> sendMessage(
+  Future<String> sendMessage(
       FirebaseFirestore firestore, String ChatName, MessageData msg) async {
     msg.TimeSent = DateTime.now();
-    await firestore
+    var msgRef = await firestore
         .collection("Chats")
         .doc(ChatName)
         .collection("ChatMessages")
@@ -152,6 +151,7 @@ class Firebase_queries {
       "Forworded": msg.Forworded,
       "MessageText": msg.MessageText
     });
+    return msgRef.id;
   }
 
 //to test

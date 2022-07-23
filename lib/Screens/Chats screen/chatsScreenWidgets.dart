@@ -26,7 +26,7 @@ class ListChatItem extends StatelessWidget {
                   //when preesed only debugs
                   print("Pressed!! ${snapshot.data["name"]}");
                   Navigator.pushNamed(context, '/userchat',
-                      arguments: UserChatScreenArgs(Cdata.ChatId));
+                      arguments: UserChatScreenArgs(Cdata.ChatId,DEBUG_USER_ID,otherUserId));
                 },
                 child: Container(
                   decoration: BoxDecoration(

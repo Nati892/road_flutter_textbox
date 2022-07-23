@@ -43,6 +43,7 @@ dependencies:
   rx: ^0.1.3
   async: ^2.8.2
   rxdart: ^0.27.5
+  provider: ^6.0.3
 
 dev_dependencies:
   flutter_test:

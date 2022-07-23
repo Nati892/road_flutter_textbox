@@ -4,7 +4,7 @@ part "message_model.g.dart";
 
 @HiveType(typeId: 1)
 class MessageData extends HiveObject {
-@HiveType(typeId: 0)
+  @HiveType(typeId: 0)
   String ChatId = "";
 
   @HiveType(typeId: 1)
@@ -28,7 +28,10 @@ class MessageData extends HiveObject {
   @HiveType(typeId: 7)
   String MessageText = "";
 
+  @HiveType(typeId: 8)
+  String MessageId = "";
+
   MessageData(this.SenderId, this.ReceiverId, this.TimeSent, this.Forworded,
-      this.MessageText);
+      this.MessageText,this.MessageId);
   MessageData.emptyConst() {}
 }
