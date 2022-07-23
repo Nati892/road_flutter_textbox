@@ -33,36 +33,34 @@ class _BottomChatBarState extends State<BottomChatBar> {
     final provider = Provider.of<ChatVM>(context, listen: false);
 
     return BottomAppBar(
-      child: Container(
-        child: Row(
-          children: [
-            Expanded(
-              child: TextField(
-                controller: TFController,
-                obscureText: false,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), hintText: "Message"),
-              ),
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              controller: TFController,
+              obscureText: false,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), hintText: "Message"),
             ),
-            IconButton(
-                onPressed: ()  {
-                  print("pressed send button");
+          ),
+          IconButton(
+              onPressed: ()  {
+                print("pressed send button");
 
-                  if (TFController.text.trim() != "") {
-                     provider.addMessage(MessageData(
-                        provider.userId,
-                        provider.otherUsrId,
-                        DateTime.now(),
-                        false,
-                        TFController.text,
-                        ""));
-                    TFController.text = "";
-                  }
-                }, //clearing text field
+                if (TFController.text.trim() != "") {
+                   provider.addMessage(MessageData(
+                      provider.userId,
+                      provider.otherUsrId,
+                      DateTime.now(),
+                      false,
+                      TFController.text,
+                      ""));
+                  TFController.text = "";
+                }
+              }, //clearing text field
 
-                icon: Icon(Icons.send))
-          ],
-        ),
+              icon: const Icon(Icons.send))
+        ],
       ),
     );
   }
