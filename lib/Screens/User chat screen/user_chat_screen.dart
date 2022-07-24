@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_learn/Chat/chatVM.dart';
 import 'package:firebase_learn/Message/message_model.dart';
+import 'package:firebase_learn/Screens/User%20chat%20screen/message_view.dart';
 import 'package:firebase_learn/Screens/User%20chat%20screen/user_chat_screen_args.dart';
 import 'package:firebase_learn/firebase_queries.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                 Provider.of<ChatVM>(context, listen: false)
                                     .chatMessages
                                     .map((e) {
-                              return Expanded(child: Text(e.MessageText));
+                              return MessageView(e);
                             }).toList(),
                           ),
                         ),
