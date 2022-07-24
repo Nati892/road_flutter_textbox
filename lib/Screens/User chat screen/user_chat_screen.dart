@@ -39,28 +39,21 @@ class _ChatScreenState extends State<ChatScreen> {
                   appBar: AppBar(
                     title: Text("${args.chatId}"),
                   ),
-                  bottomNavigationBar: BottomChatBar(),
+                //  bottomNavigationBar: BottomChatBar(),
                   body: Center(
                     child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
-                          child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                                  minHeight: 0,
-                                  maxHeight:
-                                      MediaQuery.of(context).size.height *
-                                          0.78),
-                              child: ListView(
-                                children:
-                                    Provider.of<ChatVM>(context, listen: false)
-                                        .chatMessages
-                                        .map((e) {
-                                  return Text(e.MessageText);
-                                }).toList(),
-                              )),
+                        Expanded(
+                          child: ListView(
+                            children:
+                                Provider.of<ChatVM>(context, listen: false)
+                                    .chatMessages
+                                    .map((e) {
+                              return Expanded(child: Text(e.MessageText));
+                            }).toList(),
+                          ),
                         ),
-                        // BottomChatBar()
+                         BottomChatBar()
                       ],
                     ),
                   ),
