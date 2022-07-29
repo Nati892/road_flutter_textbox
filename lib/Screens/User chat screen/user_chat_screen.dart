@@ -40,21 +40,20 @@ class _ChatScreenState extends State<ChatScreen> {
                   appBar: AppBar(
                     title: Text("${args.chatId}"),
                   ),
-                //  bottomNavigationBar: BottomChatBar(),
+                  //  bottomNavigationBar: BottomChatBar(),
                   body: Center(
                     child: Column(
                       children: [
                         Expanded(
                           child: ListView(
-                            children:
-                                Provider.of<ChatVM>(context, listen: false)
-                                    .chatMessages
-                                    .map((e) {
+                            children: Provider.of<ChatVM>(context, listen: true)
+                                .chatMessages
+                                .map((e) {
                               return MessageView(e);
                             }).toList(),
                           ),
                         ),
-                         BottomChatBar()
+                        BottomChatBar()
                       ],
                     ),
                   ),
@@ -74,94 +73,11 @@ class _ChatScreenState extends State<ChatScreen> {
               default:
                 return Scaffold(
                     appBar: AppBar(title: Text("${args.chatId}")),
-                    body: Center(child: Text("Dont know...")));
+                    body: Center(child: Text("Somthing went wrong...")));
 
                 break;
             }
           }),
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   final args = ModalRoute.of(context)!.settings.arguments
-  //       as UserChatScreenArgs; //get arguments
-
-  //   var a = Firebase_queries()
-  //       .GetAllMessagesInChat(FirebaseFirestore.instance, args.chatId);
-  //   return FutureBuilder(
-  //       future: a,
-  //       initialData: [],
-  //       builder: (BuildContext context, AsyncSnapshot snapshot) {
-  //         switch (snapshot.connectionState) {
-  //           case (ConnectionState.done):
-  //             return ChangeNotifierProvider(
-  //               create: (context) => ChatVM.withArgs(
-  //                   args.chatId, args.userId, args.otherUsedId, []),
-  //               child: Scaffold(
-  //                 appBar: AppBar(
-  //                   title: Text("${args.chatId}"),
-  //                 ),
-  //                 bottomNavigationBar: BottomChatBar(),
-  //                 body: Center(
-  //                   child: Column(
-  //                     children: [
-  //                       Padding(
-  //                         padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
-  //                         child: ConstrainedBox(
-  //                           constraints: BoxConstraints(
-  //                              minHeight: 0,
-  //                               maxHeight:
-  //                                   MediaQuery.of(context).size.height * 0.78),
-  //                           child: ListView.builder(
-  //                               itemCount: snapshot.data.size,
-  //                               itemBuilder: (BuildContext context, int index) {
-  //                                 if (provider == null)
-  //                                   provider = Provider.of<ChatVM>(context,
-  //                                       listen: false);
-
-  //                                 var FBmessageData = snapshot.data.docs[index];
-
-  //                                 var currMSG = MessageData(
-  //                                     FBmessageData["SenderId"],
-  //                                     FBmessageData["ReceiverId"],
-  //                                     FBmessageData["TimeSent"].toDate(),
-  //                                     FBmessageData["Forworded"],
-  //                                     FBmessageData["MessageText"],
-  //                                     FBmessageData.id);
-  //                                 print("Id: ${currMSG.MessageId} + ${index}");
-
-  //                                 provider!.addMessageIninit(currMSG);
-
-  //                                 return Text("${currMSG.MessageText}");
-  //                               }),
-  //                         ),
-  //                       ),
-  //                       // BottomChatBar()
-  //                     ],
-  //                   ),
-  //                 ),
-  //               ),
-  //             );
-  //             break;
-  //           case (ConnectionState.none):
-  //             return Scaffold(
-  //                 appBar: AppBar(title: Text("${args.chatId}")),
-  //                 body: Center(child: Text("No connection!")));
-  //             break;
-  //           case (ConnectionState.waiting):
-  //             return Scaffold(
-  //                 appBar: AppBar(title: Text("${args.chatId}")),
-  //                 body: Center(child: Text("Loading data")));
-
-  //             break;
-  //           default:
-  //             return Scaffold(
-  //                 appBar: AppBar(title: Text("${args.chatId}")),
-  //                 body: Center(child: Text("Dont know...")));
-
-  //             break;
-  //         }
-  //       });
-  // }
 }

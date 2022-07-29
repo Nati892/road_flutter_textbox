@@ -114,7 +114,7 @@ class Firebase_queries {
   Future<void> create_user(
       FirebaseFirestore firestore, UserData userData) async {
     await firestore.collection("users").add({
-      "age": userData.age,
+      "birthday": userData.birthday,
       "name": userData.name,
       "email": userData.email,
       "phone_number": userData.phoneNumber,
